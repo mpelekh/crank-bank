@@ -5,4 +5,8 @@ export class AccountSummary {
     type: AccountType;
     name: string;
     balance: number;
+
+    constructor() {
+
+    }
 }

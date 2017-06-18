@@ -1,25 +1,25 @@
 ﻿
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountSummary } from '../../shared/account-summary.type';
+import { AccountService } from '../../shared/account.service';
 import { AccountType } from '../../shared/account-type.enum';
 
 @Component({
     selector: 'account-list',
     templateUrl: './account-list.component.html'
 })
-export class AccountListComponent {
-
+export class AccountListComponent implements OnInit {
     cashAccounts: AccountSummary[];
     creditAccounts: AccountSummary[];
 
-    constructor() {
-        this.cashAccounts = [
-            { accountNumber: '123-234-4567', balance: 1234.56, name: 'Checking', type: AccountType.Checking },
-            { accountNumber: '123-234-4567', balance: 2134.56, name: 'Saving', type: AccountType.Savings }
-        ];
+    constructor(private accountService: AccountService) {
+    }
 
-        this.creditAccounts = [
-            { accountNumber: '1111-2222-3333-4444', balance: 1234.56, name: 'Credit', type: AccountType.Credit }
-        ]
+    ngOnInit() {
+        this.accountService.getAccountSummaries()
+            .then(accounts => {
+                this.cashAccounts = accounts.filter(v => v.type === AccountType.Checking || v.type === AccountType.Savings);
+                this.creditAccounts = accounts.filter(v => v.type === AccountType.Credit);
+            });
     }
 }

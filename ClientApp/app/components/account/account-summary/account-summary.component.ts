@@ -1,7 +1,8 @@
 ﻿
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountSummary } from '../../shared/account-summary.type';
+
+import { AccountSummary } from "../../shared/account-summary.type";
 
 @Component({
     selector: 'account-summary',
@@ -9,14 +10,13 @@ import { AccountSummary } from '../../shared/account-summary.type';
     styleUrls: ['./account-summary.component.css']
 })
 export class AccountSummaryComponent {
-    @Input() accountSummary: AccountSummary;
+    @Input() account: AccountSummary;
 
     constructor(private router: Router) {
     }
 
     navigateToDetail() {
-        this.router.navigate(['detail', '12345']);
+        this.router.navigate(['detail', this.account.accountNumber]);
     }
-
 }
     
