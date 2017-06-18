@@ -1,0 +1,20 @@
+﻿<h1>Account Summary <small>January 3rd 2017</small></h1>
+
+<div class="panel panel-default panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Cash Accounts</h3>
+    </div>
+    <div class="panel-body">
+        <p *ngIf="!cashAccounts">No Cash Accounts</p>
+        <account-summary *ngFor="let account of cashAccounts" [accountSummary]="account"></account-summary>
+    </div>
+</div>
+<div class="panel panel-default panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Credit Accounts</h3>
+    </div>
+    <div class="panel-body">
+        <p *ngIf="!creditAccounts">No Cash Accounts</p>
+        <account-summary *ngFor="let account of creditAccounts" [accountSummary]="account"></account-summary>
+    </div>
+</div>
